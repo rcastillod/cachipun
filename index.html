@@ -19,7 +19,7 @@
 
 <body>
 
-    <main class="main-wrapper">
+    <main id="mainWrapper" class="main-wrapper">
 
         <div class="content-wrapper">
 
@@ -41,33 +41,33 @@
 
             <div class="jugada">
                 <div class="usuario">
-                    <img src="assets/img/puno-usuario.png" alt="Piedra">
-                    <img src="assets/img/mano-usuario.png" alt="Papel">
-                    <img src="assets/img/tijeras-usuario.png" alt="Papel">
+                    <img id="userPiedra" src="assets/img/puno-usuario.png" alt="Piedra">
+                    <img id="userPapel" src="assets/img/mano-usuario.png" alt="Papel">
+                    <img id="userTijera" src="assets/img/tijeras-usuario.png" alt="Tijera">
                 </div>
                 <div class="maquina">
-                    <img src="assets/img/puno-maquina.png" alt="Piedra">
-                    <img src="assets/img/mano-maquina.png" alt="Papel">
-                    <img src="assets/img/tijeras-maquina.png" alt="Papel">
+                    <img id="machinePiedra" src="assets/img/puno-maquina.png" alt="Piedra">
+                    <img id="machinePapel" src="assets/img/mano-maquina.png" alt="Papel">
+                    <img id="machineTijera" src="assets/img/tijeras-maquina.png" alt="Tijera">
                 </div>
             </div>
 
             <div class="seleccion">
                 <ul class="seleccion__list">
                     <li>
-                        <p id="piedra" data-selector="piedra">
+                        <p id="0" class="opcion-seleccionada" onclick="selectedOpt(this.id)">
                             <img src="assets/img/puno-usuario.png" alt="Piedra" width="50">
                             <span>Piedra</span>
                         </p>
                     </li>
                     <li>
-                        <p id="papel" data-selector="papel">
+                        <p id="1" class="opcion-seleccionada" onclick="selectedOpt(this.id)">
                             <img src="assets/img/mano-usuario.png" alt="Papel" width="50">
                             <span>Papel</span>
                         </p>
                     </li>
                     <li>
-                        <p id="tijera" data-selector="tijera">
+                        <p id="2" class="opcion-seleccionada" onclick="selectedOpt(this.id)">
                             <img src="assets/img/tijeras-usuario.png" alt="Tijera" width="50">
                             <span>Tijera</span>
                         </p>
