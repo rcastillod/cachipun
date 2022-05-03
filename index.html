@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Desafió - Cachipun</title>
+    <!--  Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;900&display=swap" rel="stylesheet">
+    <!--  FontAwesome  -->
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <!--  Main Style  -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <main class="main-wrapper">
+
+        <div class="content-wrapper">
+
+            <div id="userRes" class="results left">
+            </div>
+            <div class="middle-info">
+                <div class="middle-info__title">
+                    <h1>Piedra, papel o tijera</h1>
+                </div>
+                <input type="number" id="counterTimes" class="middle-info__counter" min="1" max="4">
+                <div class="middle-info__description">
+                    <p>Ingresa la cantidad de veces que quieres jugar</p>
+                    <button id="jugar" class="jugar">Jugar</button>
+                </div>
+            </div>
+            <div id="machineRes" class="results right">
+
+            </div>
+
+            <div class="jugada">
+                <div class="usuario">
+                    <img src="assets/img/puno-usuario.png" alt="Piedra">
+                    <img src="assets/img/mano-usuario.png" alt="Papel">
+                    <img src="assets/img/tijeras-usuario.png" alt="Papel">
+                </div>
+                <div class="maquina">
+                    <img src="assets/img/puno-maquina.png" alt="Piedra">
+                    <img src="assets/img/mano-maquina.png" alt="Papel">
+                    <img src="assets/img/tijeras-maquina.png" alt="Papel">
+                </div>
+            </div>
+
+            <div class="seleccion">
+                <ul class="seleccion__list">
+                    <li>
+                        <p id="piedra" data-selector="piedra">
+                            <img src="assets/img/puno-usuario.png" alt="Piedra" width="50">
+                            <span>Piedra</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p id="papel" data-selector="papel">
+                            <img src="assets/img/mano-usuario.png" alt="Papel" width="50">
+                            <span>Papel</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p id="tijera" data-selector="tijera">
+                            <img src="assets/img/tijeras-usuario.png" alt="Tijera" width="50">
+                            <span>Tijera</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- <span class="res-box"><i class="fa-solid fa-check win"></i></span>
+    <span class="res-box"><i class="fa-solid fa-xmark lose"></i></span>
+    <span class="res-box"></span> -->
+
+    <!-- Scripts -->
+    <script src="assets/js/scripts.js"></script>
+
+</body>
+
+</html>

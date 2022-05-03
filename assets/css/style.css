@@ -1,0 +1,281 @@
+/* -------------------------------------------------------------------------- */
+/*                              CUSTOM PROPERTIES                             */
+/* -------------------------------------------------------------------------- */
+:root {
+
+    /* Colors */
+    --primary-color: 18 100% 68%;
+    --primary-color-shade: 18 70% 60%;
+    --primary-color-tint: 18 100% 71%;
+    --secondary-color: 340, 67%, 63%;
+    --secondary-color-shade: 318 41% 54%;
+    --shadow-color: 38deg 61% 85%;
+    --text-color: 245 9% 75%;
+    --white-color: 0 0% 100%;
+    --bg-color: 38 63% 93%;
+
+    /* Font Familiy */
+    --text-font: 'Kanit', sans-serif;
+
+    /* Font Weights */
+    --fw-light: 200;
+    --fw-regular: 400;
+    --fw-bold: 900;
+
+    /* Border */
+    --br: .1875rem;
+    --br-full: 50%;
+
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   GLOBAL                                   */
+/* -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    color: hsl(var(--text-color));
+    font-family: var(--text-font);
+    font-weight: var(--fw-light);
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--heading-font);
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+main,
+section {
+    position: relative;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: .625em;
+}
+
+::-webkit-scrollbar-track {
+    background-color: hsl(var(--primary-color-shade) / .9);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--primary-color-tint));
+    border-radius: var(--br);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 COMPONENTS                                 */
+/* -------------------------------------------------------------------------- */
+
+/* Main Wrapper */
+.main-wrapper {
+    background-color: hsl(var(--bg-color));
+    height: 100vh;
+    width: 100%;
+    padding: 2.5rem;
+    position: relative;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 12.5rem auto 12.5rem;
+    grid-template-rows: 6.25rem auto auto 6.25rem;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Middle Info */
+.middle-info {
+    grid-column: 2 / 3;
+    text-align: center;
+}
+
+.middle-info__title h1 {
+    color: hsl(var(--primary-color-shade));
+    font-size: 5rem;
+}
+
+.middle-info__counter {
+    border: 0;
+    border-radius: 25% 75% 24% 76% / 66% 23% 77% 34%;
+    background-color: hsl(var(--white-color));
+    color: hsl(var(--primary-color-shade));
+    font-family: var(--text-font);
+    font-size: 2.8125rem;
+    height: 6.25rem;
+    width: 6.25rem;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+.middle-info__counter:focus {
+    outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.middle-info__description {
+    color: hsl(var(--primary-color));
+    font-size: 1.625rem;
+    font-weight: var(--fw-regular);
+}
+
+.jugar {
+    border: 0;
+    border-radius: 8% 92% 6% 94% / 83% 14% 86% 17%;
+    color: hsl(var(--white-color));
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-top: 1.25rem;
+    padding: .625em .9375em;
+    background-color: hsl(var(--secondary-color));
+    transition: background .3s ease-in-out;
+}
+
+.jugar:hover,
+.jugar:focus {
+    background-color: hsl(var(--secondary-color-shade));
+}
+
+/* Results */
+.results {
+    align-items: center;
+    min-height: 18.75rem;
+    background-color: hsl(var(--white-color));
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+    grid-row: 2 / 3;
+    padding: 1.25rem;
+}
+
+.results.left {
+    border-radius: 8% 92% 11% 89% / 89% 10% 90% 11%;
+    box-shadow: .9375rem .6875rem 0 hsl(var(--shadow-color));
+    grid-column: 1 / 2;
+}
+
+.results.right {
+    border-radius: 89% 10% 90% 11% / 8% 92% 11% 89%;
+    box-shadow: -.9375rem .6875rem 0 hsl(var(--shadow-color));
+    grid-column: 3 / 4;
+}
+
+.res-box {
+    background-color: hsl(var(--shadow-color));
+    border-radius: 25% 75% 24% 76% / 66% 23% 77% 34%;
+    display: grid;
+    place-items: center;
+    height: 100px;
+    width: 100px;
+}
+
+.res-box i {
+    font-size: 64px;
+}
+
+.res-box i.win {
+    color: hsl(115, 42%, 56%);
+    text-shadow: 2px 4px hsl(115deg 42% 38%);
+}
+
+.res-box i.lose {
+    color: hsl(353, 49%, 54%);
+    text-shadow: 2px 4px hsl(353, 49%, 38%);
+}
+
+/* Jugada */
+.jugada {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    gap: 6.25rem;
+}
+
+.jugada .usuario,
+.jugada .maquina {
+    position: relative;
+}
+
+.jugada img {
+    bottom: 0;
+    position: absolute;
+    width: 18.75rem;
+    transform: translateY(100%);
+    transition: transform .3s ease-in-out;
+}
+
+.jugada .usuario img {
+    right: 0;
+}
+
+.jugada .maquina img {
+    left: 0;
+}
+
+
+/* Seleccion */
+.seleccion {
+    background-color: hsl(var(--white-color));
+    border-radius: 3% 97% 2% 98% / 100% 14% 86% 0% ;
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    z-index: 1;
+}
+
+.seleccion__list {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 3.125rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.seleccion__list li {
+    text-align: center;
+}
+
+.seleccion__list p {
+    color: hsl(var(--primary-color-tint));
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: var(--fw-regular);
+}
+
+.seleccion__list p:hover img,
+.seleccion__list p:focus img {
+    transform: translateY(-0.3125rem);
+}
+
+.seleccion__list img {
+    position: relative;
+    transition: transform .3s ease-in-out;
+}
