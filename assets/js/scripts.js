@@ -1,8 +1,8 @@
 // Variables
 var mainWrapper = document.getElementById('mainWrapper') // Main Wrapper
 
-var jugadasTotales = document.getElementById('counterTimes') // Veces a jugar
-var jugadasActuales = 0 // Veces que actualmente se ha jugado (Inicialmente 0)
+var jugadasTotales = document.getElementById('counterTimes').value // Veces a jugar
+var jugadasActuales = 1 // Veces que actualmente se ha jugado (Inicialmente 0)
 
 var btnJugar = document.getElementById('jugar') // Botón jugar
 
@@ -17,22 +17,56 @@ var machinePiedra = document.getElementById('machinePiedra') // Imagen maquina p
 var machinePapel = document.getElementById('machinePapel') // Imagen maquina papel
 var machineTijera = document.getElementById('machineTijera') // Imagen maquina tijera
 
+var btnDisable = document.querySelectorAll('.disable') // Recupero los botones de jugada con la clase .disable
+
 var showTIme = 2500 // Tiempo en que las manos se mostraran
 
 var piedra = 0
 var papel = 1
 var tijera = 2
 
-var opciones = ['Piedra', 'Papel', 'Tijera'] // 0 = Piedra, 1 = Papel, 2 = Tijera 
+var userWin = 0
+var machineWin = 0
 
-// Función para obtener un numero random entre 1 y 3
+// Obtengo cantidad de veces a jugar
+btnJugar.addEventListener('click', () => {
+    btnDisable.forEach( (btn) => {
+        btn.classList.remove('disable')
+    })    
+})
+
+// Función para obtener un numero random entre 0 y 2
 function randomNumber(){
     var randNumber = Math.floor( Math.random()*3 )
     return randNumber
 }
 
+// Finalizado la partida del juego
+function finPartida() {
+    var jugadasTotales = document.getElementById('counterTimes').value // Veces a jugar
+    if ( jugadasActuales > jugadasTotales ) {
+        btnDisable.forEach( (btn) => {
+            btn.classList.add('disable')
+        })
+        return
+    }
+}
+
 // Función para obtener opción seleccionada por el usuario
 function selectedOpt(opcion) {
+    
+    var jugadasTotales = document.getElementById('counterTimes').value // Veces a jugar
+
+    console.log(jugadasActuales, jugadasTotales)
+
+    if ( jugadasActuales > jugadasTotales ) {
+        btnDisable.forEach( (btn) => {
+            btn.classList.add('disable')
+        })
+        return
+    }
+
+    // Numero random de la maquina
     var jugadaMachine = randomNumber()
 
     // Piedra
@@ -44,24 +78,40 @@ function selectedOpt(opcion) {
         }, showTIme);
 
         if ( jugadaMachine == piedra ) {
+
             machinePiedra.classList.add('show')
             setTimeout(() => {
                 machinePiedra.classList.remove('show')
             }, showTIme);
+
+            jugadasActuales++
+            finPartida()
             jugadas('empate')
+
         } else if ( jugadaMachine == papel ) {
+
             machinePapel.classList.add('show')
             setTimeout(() => {
                 machinePapel.classList.remove('show')
             }, showTIme);
+
+            jugadasActuales++
+            finPartida()
             jugadas('perdiste')
+
         } else if ( jugadaMachine == tijera ) {
+
             machineTijera.classList.add('show')
             setTimeout(() => {
                 machineTijera.classList.remove('show')
             }, showTIme);
+
+            jugadasActuales++
+            finPartida()
             jugadas('ganaste')
+
         }
+
     }
     // Papel
     if ( opcion == papel ) {
@@ -78,6 +128,8 @@ function selectedOpt(opcion) {
                 machinePapel.classList.remove('show')
             }, showTIme);
 
+            jugadasActuales++
+            finPartida()
             jugadas('empate')
 
         } else if ( jugadaMachine == piedra ) {
@@ -87,6 +139,8 @@ function selectedOpt(opcion) {
                 machinePiedra.classList.remove('show')
             }, showTIme);
 
+            jugadasActuales++
+            finPartida()
             jugadas('ganaste')
 
         } else if ( jugadaMachine == tijera ) {
@@ -96,6 +150,8 @@ function selectedOpt(opcion) {
                 machineTijera.classList.remove('show')
             }, showTIme);
 
+            jugadasActuales++
+            finPartida()
             jugadas('perdiste')
 
         }
@@ -116,6 +172,8 @@ function selectedOpt(opcion) {
                 machineTijera.classList.remove('show')
             }, showTIme);
 
+            jugadasActuales++
+            finPartida()
             jugadas('empate')
 
         } else if ( jugadaMachine == piedra ) {
@@ -125,6 +183,8 @@ function selectedOpt(opcion) {
                 machinePiedra.classList.remove('show')
             }, showTIme);
             
+            jugadasActuales++
+            finPartida()
             jugadas('perdiste')
 
         } else if ( jugadaMachine == papel ) {
@@ -134,6 +194,8 @@ function selectedOpt(opcion) {
                 machinePapel.classList.remove('show')
             }, showTIme);
 
+            jugadasActuales++
+            finPartida()
             jugadas('ganaste')
 
         }
@@ -172,21 +234,3 @@ function jugadas(resultado) {
 
 
 
-// btnJugar.addEventListener('click', () => {
-    
-//     while ( jugadasActuales < jugadasTotales.value ) {
-
-//         var mensajeJugada = document.createElement('h1')
-//         var textoMensaje = mensajeJugada.textContent = 'Selecciona tu siguiente jugada'
-//         mainWrapper.appendChild(mensajeJugada)
-        
-//         jugadas(jugadasTotales)
-
-//         var opcion = opcionSelec()
-
-//         console.log(opcion)
-
-//         jugadasActuales++
-//     }
-    
-// })
