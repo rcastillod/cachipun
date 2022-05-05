@@ -57,8 +57,6 @@ function selectedOpt(opcion) {
     
     var jugadasTotales = document.getElementById('counterTimes').value // Veces a jugar
 
-    console.log(jugadasActuales, jugadasTotales)
-
     if ( jugadasActuales > jugadasTotales ) {
         contenedorBtns.classList.add('disable')
         contenedorMessage.classList.remove('disable')
@@ -261,8 +259,6 @@ function jugadas(resultado) {
             <img src="assets/img/img-${userFin}.png">
         </div>
     `
-
-    console.log(`Ganaste: ${userWin} veces`, `Perdiste: ${userLose} veces`, `Empataste: ${userTie} veces`)
 }
 
 
