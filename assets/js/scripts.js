@@ -17,22 +17,23 @@ var machinePiedra = document.getElementById('machinePiedra') // Imagen maquina p
 var machinePapel = document.getElementById('machinePapel') // Imagen maquina papel
 var machineTijera = document.getElementById('machineTijera') // Imagen maquina tijera
 
-var btnDisable = document.querySelectorAll('.disable') // Recupero los botones de jugada con la clase .disable
+var contenedorBtns = document.getElementById('contenedorButtons') // Recupero el contenedor de los botones de jugada con la clase .disable
+var contenedorMessage = document.getElementById('message') // Recupero el contenedor de los mensajes
 
-var showTIme = 2500 // Tiempo en que las manos se mostraran
+var showTime = 2500 // Tiempo en que las manos se mostraran
 
 var piedra = 0
 var papel = 1
 var tijera = 2
 
 var userWin = 0
-var machineWin = 0
+var userLose = 0
+var userTie = 0
+var userFin = ''
 
 // Obtengo cantidad de veces a jugar
 btnJugar.addEventListener('click', () => {
-    btnDisable.forEach( (btn) => {
-        btn.classList.remove('disable')
-    })    
+    contenedorBtns.classList.remove('disable')
 })
 
 // Función para obtener un numero random entre 0 y 2
@@ -45,9 +46,8 @@ function randomNumber(){
 function finPartida() {
     var jugadasTotales = document.getElementById('counterTimes').value // Veces a jugar
     if ( jugadasActuales > jugadasTotales ) {
-        btnDisable.forEach( (btn) => {
-            btn.classList.add('disable')
-        })
+        contenedorBtns.classList.add('disable')
+        contenedorMessage.classList.remove('disable')
         return
     }
 }
@@ -60,9 +60,8 @@ function selectedOpt(opcion) {
     console.log(jugadasActuales, jugadasTotales)
 
     if ( jugadasActuales > jugadasTotales ) {
-        btnDisable.forEach( (btn) => {
-            btn.classList.add('disable')
-        })
+        contenedorBtns.classList.add('disable')
+        contenedorMessage.classList.remove('disable')
         return
     }
 
@@ -75,14 +74,14 @@ function selectedOpt(opcion) {
         userPiedra.classList.add('show')
         setTimeout(() => {
             userPiedra.classList.remove('show')
-        }, showTIme);
+        }, showTime);
 
         if ( jugadaMachine == piedra ) {
 
             machinePiedra.classList.add('show')
             setTimeout(() => {
                 machinePiedra.classList.remove('show')
-            }, showTIme);
+            }, showTime);
 
             jugadasActuales++
             finPartida()
@@ -93,7 +92,7 @@ function selectedOpt(opcion) {
             machinePapel.classList.add('show')
             setTimeout(() => {
                 machinePapel.classList.remove('show')
-            }, showTIme);
+            }, showTime);
 
             jugadasActuales++
             finPartida()
@@ -104,7 +103,7 @@ function selectedOpt(opcion) {
             machineTijera.classList.add('show')
             setTimeout(() => {
                 machineTijera.classList.remove('show')
-            }, showTIme);
+            }, showTime);
 
             jugadasActuales++
             finPartida()
@@ -119,14 +118,14 @@ function selectedOpt(opcion) {
         userPapel.classList.add('show')
         setTimeout(() => {
             userPapel.classList.remove('show')
-        }, showTIme);
+        }, showTime);
 
         if ( jugadaMachine == papel ) {
 
             machinePapel.classList.add('show')
             setTimeout(() => {
                 machinePapel.classList.remove('show')
-            }, showTIme);
+            }, showTime);
 
             jugadasActuales++
             finPartida()
@@ -137,7 +136,7 @@ function selectedOpt(opcion) {
             machinePiedra.classList.add('show')
             setTimeout(() => {
                 machinePiedra.classList.remove('show')
-            }, showTIme);
+            }, showTime);
 
             jugadasActuales++
             finPartida()
@@ -148,7 +147,7 @@ function selectedOpt(opcion) {
             machineTijera.classList.add('show')
             setTimeout(() => {
                 machineTijera.classList.remove('show')
-            }, showTIme);
+            }, showTime);
 
             jugadasActuales++
             finPartida()
@@ -163,14 +162,14 @@ function selectedOpt(opcion) {
         userTijera.classList.add('show')
         setTimeout(() => {
             userTijera.classList.remove('show')
-        }, showTIme);
+        }, showTime);
 
         if ( jugadaMachine == tijera ) {
             
             machineTijera.classList.add('show')
             setTimeout(() => {
                 machineTijera.classList.remove('show')
-            }, showTIme);
+            }, showTime);
 
             jugadasActuales++
             finPartida()
@@ -181,7 +180,7 @@ function selectedOpt(opcion) {
             machinePiedra.classList.add('show')
             setTimeout(() => {
                 machinePiedra.classList.remove('show')
-            }, showTIme);
+            }, showTime);
             
             jugadasActuales++
             finPartida()
@@ -192,7 +191,7 @@ function selectedOpt(opcion) {
             machinePapel.classList.add('show')
             setTimeout(() => {
                 machinePapel.classList.remove('show')
-            }, showTIme);
+            }, showTime);
 
             jugadasActuales++
             finPartida()
@@ -221,15 +220,49 @@ function jugadas(resultado) {
     contenedorCantidadMachine.appendChild(cuadrosMachine)
     
     if ( resultado == 'empate' ) {
+        
         resIconUser.classList.add('fa-solid', 'fa-equals', 'tie')
         resIconMachine.classList.add('fa-solid', 'fa-equals', 'tie')
+
+        userTie++
+        
     } else if ( resultado == 'perdiste' ) {
+        
         resIconUser.classList.add('fa-solid', 'fa-xmark', 'lose')
         resIconMachine.classList.add('fa-solid', 'fa-check', 'win')
+
+        userLose++
+
     } else if ( resultado == 'ganaste' ) {
+        
         resIconUser.classList.add('fa-solid', 'fa-check', 'win')
         resIconMachine.classList.add('fa-solid', 'fa-xmark', 'lose')
+
+        userWin++
+
     }
+
+    if ( userWin > userLose ) {
+        userFin = 'ganaste'
+    } else if ( userWin < userLose ) {
+        userFin = 'perdiste'
+    } else if ( userWin == userLose ) {
+        userFin = 'empataste'
+    }
+
+    contenedorMessage.innerHTML = `
+        <div class="mensaje-final__contador">
+        <p class="mensaje-final__ganaste">Ganaste: ${userWin} veces</p>
+        <p class="mensaje-final__perdiste">Perdiste: ${userLose} veces</p>
+        <p class="mensaje-final__empataste">Empataste: ${userTie} veces</p>
+        </div>
+        <div  class="mensaje-final__resultado">
+            <span>${userFin}!</span>
+            <img src="assets/img/img-${userFin}.png">
+        </div>
+    `
+
+    console.log(`Ganaste: ${userWin} veces`, `Perdiste: ${userLose} veces`, `Empataste: ${userTie} veces`)
 }
 
 

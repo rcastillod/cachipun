@@ -53,26 +53,29 @@
             </div>
 
             <div class="seleccion">
-                <ul class="seleccion__list">
+                <ul id="contenedorButtons" class="seleccion__list disable">
                     <li>
-                        <p id="0" class="opcion-seleccionada disable" onclick="selectedOpt(this.id)">
+                        <p id="0" class="opcion-seleccionada" onclick="selectedOpt(this.id)">
                             <img src="assets/img/puno-usuario.png" alt="Piedra" width="50">
                             <span>Piedra</span>
                         </p>
                     </li>
                     <li>
-                        <p id="1" class="opcion-seleccionada disable" onclick="selectedOpt(this.id)">
+                        <p id="1" class="opcion-seleccionada" onclick="selectedOpt(this.id)">
                             <img src="assets/img/mano-usuario.png" alt="Papel" width="50">
                             <span>Papel</span>
                         </p>
                     </li>
                     <li>
-                        <p id="2" class="opcion-seleccionada disable" onclick="selectedOpt(this.id)">
+                        <p id="2" class="opcion-seleccionada" onclick="selectedOpt(this.id)">
                             <img src="assets/img/tijeras-usuario.png" alt="Tijera" width="50">
                             <span>Tijera</span>
                         </p>
                     </li>
                 </ul>
+                <div id="message" class="mensaje-final disable">
+                    
+                </div>
             </div>
 
         </div>
